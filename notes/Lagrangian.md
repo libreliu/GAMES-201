@@ -87,20 +87,47 @@ $$
 1. $ W(r, h) $ 与 Dirac 函数的区别（$ O(h^2) $）
 2. 体积分变成离散点求和的离散误差（a.k.a. 采样误差）
 
-事实上，考虑 $ f({\bf r}) \equiv 1 $ 的常值场，SPH 近似也不能给出精确解
+事实上，考虑 $ f({\bf r}) \equiv 1 $ 的常值场，$ \forall r $，SPH 近似也不能给出精确解：
+$$
+\nabla 1 = 0 = \sum_i \frac{m_i}{\rho_i} \nabla W(r-r_i, h) \\
 
-（TODO 抄上去）
+1 = \sum_i \frac{m_i}{\rho_i}  W(r-r_i, h)
+$$
+比如上面的导数项，对于一般的非负的核函数，其在非 $ r = r_i $ 处均有 $ \nabla W \ne 0 $ 成立，这意味着等式不可能成立。
 
-
+> 当然，如果我们取的 $ r $ 都在 $ r_i $ 处，这个时候就还算精确..
 
 ### 改进的空间导数近似
 
 用恒等式 $ \nabla (f \rho^n) \equiv nf \rho ^{n-1} \nabla \rho + \rho^n \nabla f $，得到
+$$
+\nabla f \equiv \frac{1}{\rho^n} [\nabla (f\rho^n) - nf \rho^{n-1} \nabla \rho]
+$$
+所以
+$$
+\begin{eqnarray}
+\nabla \rho & = & \sum_i m_i \nabla W({\bf r}-{\bf r_i}, h)
 
+\\
 
+\nabla f({\bf r}) & = & \frac{1}{\rho({\bf r})^n} \sum_i {m_i}( f({\bf r_i}) \rho({\bf r_i})^{n-1} - n f({\bf r}) \rho({\bf r})^{n-1}) \nabla W({\bf r}-{\bf r_i}, h) \\
+
+\end{eqnarray}
+$$
+比较有用的特例是 $ n = 1 $ 和 $ n = -1 $，他们分别对常值函数和压强的空间导数的估计有改进。
 
 ### 改进的散度近似
 
+利用恒等式
+$$
+\nabla \cdot (\rho^n {\bf F}) \equiv \rho^n \nabla \cdot {\bf F} + n \rho^{n−1} {\bf F} \cdot \nabla \rho
+$$
+
+> 推导：
+> $$
+> 
+> $$
+> 
 
 
 ### 核函数 W
