@@ -4,6 +4,18 @@
 >
 > 1. [张量分析初步和矢量恒等式 - CSDN](https://blog.csdn.net/qq_23997101/article/details/78181074)
 > 2. [电动力学 em02 - 杨焕雄](http://staff.ustc.edu.cn/~hyang/em/em02.pdf)
+> 3. 张量分析笔记 - 知乎专栏
+>    1. https://zhuanlan.zhihu.com/p/56850779
+>    2. https://zhuanlan.zhihu.com/p/57431006
+>    3. https://zhuanlan.zhihu.com/p/60130562
+>    4. https://zhuanlan.zhihu.com/p/61252553
+>    5. https://zhuanlan.zhihu.com/p/61908838
+>    6. https://zhuanlan.zhihu.com/p/63515274
+>    7. https://zhuanlan.zhihu.com/p/64157788
+>    8. https://zhuanlan.zhihu.com/p/65002019
+> 4. [对偶空间 - 维基百科](https://zh.wikipedia.org/wiki/%E5%AF%B9%E5%81%B6%E7%A9%BA%E9%97%B4)
+> 5. [Covariance and contravariance of vectors - Wikipedia](https://en.wikipedia.org/wiki/Covariance_and_contravariance_of_vectors)
+> 6. 
 
 ## 张量
 
@@ -15,14 +27,14 @@ $ m $ 维 $ n $ 阶张量：一个有 $ n $ 个自由下标，每个下标可以
 >
 > （高阶：$ e_i $ 一阶，$ e_i e_j $ 二阶，$ e_i e_j e_k $ 三阶..） 
 
-#### 基本记号
+### 基本记号
 
 - (Kronecker) $ \delta_{ij} $，仅当 $ i = j $ 时取值为 1，否则为 0
 - (置换符号) $ \epsilon_{ijk} $ 的下标偶排列为 1，奇排列 -1，重复为 0
 
 
 
-#### 常用关系
+### 常用关系
 
 
 $$
@@ -110,9 +122,250 @@ $$
 \epsilon_{ijk} \epsilon_{ijk} = 6
 $$
 
-> 证明：上面证明取 $ o = r, p = s, q = t $ 得到
+> 证明：上面取 $ p = s, q = t $ 得到
 >
-> 
+> $$
+> \begin{eqnarray}
+> e_{rst}e_{rst} &=& \delta_{tt} \delta_{ss} - \delta_{st} \delta_{ts} \\
+> &=& \delta_{tt} \delta_{ss} - \delta_{ss} \\
+> &=& (\delta_{tt} - 1) \delta_{ss} \\
+> &=& 2 \times 3 = 6
+> \end{eqnarray}
+> $$
+
+$$
+\epsilon_{ijk} \epsilon_{mjk} = 2\delta_{im}
+$$
+
+> 证明略
+
+### 协变和逆变
+
+#### 逆变
+
+设有定义在标量 S 上的 n 维向量空间，并且有基 $ {\bf f} = (X_1, ..., X_n) $ 和 $ {\bf f'} = (Y_1, ..., Y_n) $，则基矢量的变换用
+$$
+\mathbf{f} \mapsto \mathbf{f}^{\prime}=\left(\sum_{i} a_{1}^{i} X_{i}, \ldots, \sum_{i} a_{n}^{i} X_{i}\right)=\mathbf{f} A
+$$
+表示，即
+$$
+Y_{j}=\sum_{i} a_{j}^{i} X_{i}
+$$
+如果向量空间中的向量 $ v$ 可以这样表示
+$$
+v=\sum_{i} v^{i}[\mathbf{f}] X_{i}
+$$
+记
+$$
+\mathbf{v}[\mathbf{f}]=\left[
+\begin{array}{c}
+v^{1}[\mathbf{f}] \\
+v^{2}[\mathbf{f}] \\
+\vdots \\
+v^{n}[\mathbf{f}]
+\end{array}
+\right]
+$$
+则 $ \bf v $ 也可以写作矩阵形式
+$$
+{\bf v} = {\bf f v[f]}
+$$
+那么，他在 $ \bf f' $ 基下的表示应为
+$$
+\bf v = f' v[f']
+$$
+鉴于 $ \bf v $ 与基矢量选择无关，
+$$
+\bf f v[f] = f'v[f']=fAv[fA] \quad \leadsto \quad v[fA] = A^{-1}v[f]
+$$
+写成分量形式
+$$
+v^i[{\bf f} A] = \sum_i \tilde a_j^i v^j[{\bf f}] \qquad \tilde a表示A的逆
+$$
+此为**逆变**，因换基时是乘以逆矩阵。
+
+#### 协变
+
+定义在 V 上的线性函数，有
+$$
+\alpha(X) = \alpha(\sum_j a^j X_j) = \sum_j a^j \alpha (X_j) = \sum_j a^j \alpha_j[{\bf f}]
+$$
+其中定义 $ \alpha_j[{\bf f}] = \alpha (X_j) $。
+
+则
+$$
+\begin{eqnarray}
+\alpha[{\bf f'}] &=& \alpha[{\bf f}A] =  [\alpha_1[{\bf fA}], ..., \alpha_i[ {\bf fA}], ..., \alpha_n[{\bf fA}]] \\
+&=& [..., \alpha_i(\sum_j a_i^j X_j), ...] \\
+&=& [..., a_i^j \alpha_j[{\bf f}], ...] \\
+&=& \alpha[{\bf f}] A
+\end{eqnarray}
+$$
+
+> 为什么矩阵元素记作 $ a_i^j $？
+>
+> TODO: 写一写 A
+
+仔细观察，如果 $ \vec v $ 是一个线性变换的输出，那确实满足协变（E.g. 把 $ \vec e_x $ 变到 $ \vec v_x $）；而逆变就是矢量在不同基下的坐标满足的变换。
+
+![Covariantcomponents](assets/Covariantcomponents.gif)
+
+坐标系中的例子：TODO
+
+
+
+### 对偶空间
+
+设 $V$ 为在域 $F$ 上的向量空间，定义其对偶空間 $V^*$ 为由 $V$ 到 $ F $ 的所有线性函数的集合。 $V^* $ 本身是 $F$ 的向量空间，且对所有 $ V^* $  中的 $ \varphi $  及 $ \psi  $、所有 $ F $ 中的 $a$、所有 $V$中的 $x$ 满足以下加法及标量乘法：
+$$
+(\phi + \psi )( x ) = \phi ( x ) + \psi ( x )  \\ 
+ ( a \phi ) ( x ) = a \phi ( x )
+$$
+
+
 
 ## 矢量分析
+
+用张量的基本记号，矢量代数的基本计算公式可以归纳为
+$$
+\vec{e}_{i} \cdot \vec{e}_{j} = \delta_{ij}, \quad
+\vec{e}_{i} \times \vec{e}_{j} = \epsilon_{ijk} \vec{e}_{k} \\
+$$
+
+> 注意，这里体现了 $e_1, e_2, e_3$ 是右手系，因为叉乘是定义为右手的 
+>
+> 另外注意 $ \epsilon $ 和逆序数的性质是一致的，即轮换不改变值 （$ ijk $，$ jki $，$ kij $ 相等）
+
+所以
+$$
+\begin{eqnarray}
+\vec A+ \vec B &=& (A_i + B_i) \vec{e}_{i} \\
+\vec A \cdot \vec B &=& A_i B_i \\
+\vec A \times \vec B &=& A_i B_j (\vec{e}_{i} \times \vec{e}_{j}) = \epsilon_{ijk} A_i B_j \vec{e}_{k} \\
+
+\vec A \cdot (\vec B \times \vec C) &=& A_m \vec {e_m} \cdot (\epsilon_{jki} B_j C_k \vec{e}_{i}) = \epsilon_{ijk}A_mB_jC_k(\vec{e_m} \cdot \vec{e}_{i}) \\
+&=& \epsilon_{ijk} A_mB_jC_k \delta_{mi} =\epsilon_{ijk} A_iB_jC_k
+\\
+
+\vec A \times (\vec B \times \vec C) &=& \vec{e}_{i} \epsilon_{ijk} A_j (\vec B \times \vec C)_k = \vec{e}_{i} \epsilon_{i j k} \epsilon_{m n k} A_{j} B_{m} C_{n} \\
+&=& \vec{e}_{i}\left(\delta_{i m} \delta_{j n}-\delta_{i n} \delta_{j m}\right) A_{j} B_{m} C_{n} \\
+&=& \vec{e}_{i}\left(B_{i} A_{j} C_{j}-C_{i} A_{j} B_{j}\right)=(\vec{A} \cdot \vec{C}) \vec{B}-(\vec{A} \cdot \vec{B}) \vec{C}
+
+\end{eqnarray} \\
+$$
+
+> 有点像数理逻辑，要注意不要让名字冲突，这样求和的关系就错了
+>
+> 两个叉乘的时候，不妨先看出来最后的结果用的基矢的指标，然后再写分量（如上）
+
+下面用简化表达式处理 **Cartesian 直角坐标系**中的算符：
+$$
+\nabla=\vec{e}_{1} \frac{\partial}{\partial x_{1}}+\vec{e}_{2} \frac{\partial}{\partial x_{2}}+\vec{e}_{3} \frac{\partial}{\partial x_{3}} \quad \leadsto \quad \nabla=\vec{e}_{i} \frac{\partial}{\partial x_{i}} \leadsto \nabla = \vec{e}_{i} \partial_i \\
+\text{那么有} \quad \partial_{i} x_{j}=\delta_{i j}
+$$
+
+下面处理散度，注意偏导数算符是如何作用到乘法的：
+$$
+\nabla \cdot \vec{A}=\vec{e}_{i} \partial_{i} \cdot\left(A_{j} \vec{e}_{j}\right)=\left(\vec{e}_{i} \cdot \vec{e}_{j}\right) \partial_{i} A_{j}+A_{j} \vec{e}_{i} \cdot \partial_{i} \vec{e}_{j} \\
+\text{因为直角坐标系的基矢是常矢量，所以} \quad \partial_{i} \vec{e}_{j}=0 \\
+\nabla \cdot \vec{A}=\left(\vec{e}_{i} \cdot \vec{e}_{j}\right) \partial_{i} A_{j}=\delta_{i j} \partial_{i} A_{j} \quad \leadsto \quad \nabla \cdot \vec{A}=\partial_{i} A_{i}
+$$
+旋度如下：
+$$
+\nabla \times \vec{A}=\vec{e}_{i} \partial_{i} \times\left(A_{j} \vec{e}_{j}\right)=\left(\vec{e}_{i} \times \vec{e}_{j}\right) \partial_{i} A_{j}=\epsilon_{i j k} \vec{e}_{k} \partial_{i} A_{j}
+$$
+标量场的全微分 $ dF = d \vec{r} \cdot \nabla F $，所以在 Cartesian 直角坐标系里
+$$
+dF =d x_{i} \partial_{i} F= d \vec{r} \cdot \nabla F  =d x_{j} \vec{e}_{j} \cdot \nabla F=d x_{j}(\nabla F)_{j} \quad \leadsto \quad (\nabla F)_{i}=\partial_{i} F \\
+\nabla F = \vec e_i \partial_i F
+$$
+
+> 下面都假设基矢有 $ \partial_{i} \vec{e}_{j}=0  $ 成立
+
+### 恒等式证明练习
+
+#### 梯度场无旋
+
+$$
+\begin{eqnarray}
+\nabla \times \nabla F
+&=& (\vec{e}_{i} \partial_{i}) \times (\vec e_j \partial_j F) \\
+&=& \vec e_k \epsilon_{ijk} \partial_i \partial_j F \\
+
+\end{eqnarray}
+$$
+
+这里可以观察到 $ \partial_i \partial_j F = \partial_j \partial_i F $，而 $ \epsilon_{ijk} $ 调换其中两个会变号，所以是 0。也可这样证：
+$$
+\begin{eqnarray}
+\vec e_k \epsilon_{ijk} \partial_i \partial_j F &=&  \frac{1}{2} \vec e_k \epsilon_{ijk} \partial_i \partial_j F
+ + \frac{1}{2} \vec e_k \epsilon_{ijk} \partial_i \partial_j F\\
+ &=&  (\frac{1}{2} \vec e_k \epsilon_{ijk} \partial_i \partial_j F
+ )+ (\frac{1}{2} \vec e_k \epsilon_{ijk} \partial_i \partial_j F)\\
+ 
+\text{(换指标名)} \quad &=&  \frac{1}{2} \vec e_k \epsilon_{ijk} \partial_i \partial_j F
+ + \frac{1}{2} \vec e_k \epsilon_{jik} \partial_j \partial_i F\\
+\mathrm{(\because\partial_i \partial_j F = \partial_j \partial_i F)} \quad &=& \frac{1}{2} \vec e_k (\epsilon_{ijk} + \epsilon_{jik}) \partial_i \partial_j F = 0
+\end{eqnarray}
+$$
+
+#### 旋度场无散
+
+$$
+\begin{eqnarray}
+\nabla \cdot (\nabla \times \vec A) &=& (\vec e_m \partial_m) \cdot (\epsilon_{ijk} \partial_i A_j \vec e_k) \\
+&=& \delta_{mk} \epsilon_{ijk} \partial_m \partial_i A_j \\
+&=& \epsilon_{ijk} \partial_k \partial_i A_j \\
+&=& \frac{1}{2} \epsilon_{ijk} \partial_k \partial_i A_j + \frac{1}{2} \epsilon_{kji} \partial_i \partial_k A_j \\
+&=& \frac{1}{2} (\epsilon_{ijk} + \epsilon_{kji}) \partial_k \partial_i A_j \\
+&=& 0
+\end{eqnarray}
+$$
+
+> 脑子要清楚，想清楚现在的下标是对谁在求和...比如第一步里面如果写成了 $ m = i $ 就直接 GG 了...
+
+#### 一些恒等式
+
+下面的 $ \vec{f}=f_{i} \vec{e}_{i}, \quad \vec{g}=g_{i} \vec{e}_{i} $。
+$$
+\vec{f} \times \vec{g}=\vec{e}_{k} \epsilon_{k m n} f_{m} g_{n} \quad \leadsto \quad(\vec{f} \times \vec{g})_{k}=\epsilon_{m n k} f_{m} g_{n}
+$$
+
+$$
+\begin{eqnarray}
+\nabla \times(\vec{f} \times \vec{g})
+&=& \vec e_j \epsilon_{ikj} \partial_i (\vec f \times \vec g)_k \\
+&=& \vec e_j \epsilon_{ikj} \epsilon_{m n k} \partial_i (f_{m} g_{n}) \\
+&=& \vec e_j (\delta_{jm} \delta_{in} - \delta_{jn} \delta_{im}) (f_m \partial_i g_n + g_n \partial_i f_m) \\
+&=& \vec e_j (f_j \partial_i g_i + g_i \partial_i f_j) - \vec e_j(f_i \partial_i g_j + g_j \partial_i f_i) \\
+&=&  (\vec{e}_{j} f_{j} ) (\partial_{i} g_{i} )+ (g_{i} \partial_{i} ) (\vec{e}_{j} f_{j} )- (f_{i} \partial_{i} ) (\vec{e}_{j} g_{j} )- (\vec{e}_{j} g_{j} ) (\partial_{i} f_{i} ) \\
+&=& \vec{f}(\nabla \cdot \vec{g})+(\vec{g} \cdot \nabla) \vec{f}-(\vec{f} \cdot \nabla) \vec{g}-\vec{g}(\nabla \cdot \vec{f})
+\end{eqnarray}
+$$
+
+> 这样也可以（全写开）：
+> $$
+> \begin{eqnarray}
+> \nabla \times(\vec{f} \times \vec{g}) 
+> &=& \vec e_j \epsilon_{ikj} \epsilon_{m n k} \partial_i (f_{m} g_{n}) \\
+> &=& \vec e_j (\delta_{jm} \delta_{in} f_m \partial_i g_n + \dots - \delta_{jn} \delta_{im} f_m \partial_i g_n - \dots) \\
+> &=&  \vec e_j (f_j \partial_i g_i + \dots -  f_i \partial_i g_j - \dots)
+> \end{eqnarray}
+> $$
+
+$$
+\begin{aligned}
+\nabla \times(\nabla \times \vec{V}) &=\vec{e}_{m} \epsilon_{m n i} \partial_{n}(\nabla \times \vec{V})_{i} \\
+&=\vec{e}_{m} \epsilon_{m n i} \partial_{n}\left[\epsilon_{i j k} \partial_{j} V_{k}\right] \\
+&=\vec{e}_{m} \epsilon_{m n i} \epsilon_{j k i} \partial_{n} \partial_{j} V_{k} \\
+&=\vec{e}_{m}\left[\delta_{m j} \delta_{n k}-\delta_{m k} \delta_{n j}\right] \partial_{n} \partial_{j} V_{k} \\
+&=\vec{e}_{j} \partial_{j}\left(\partial_{k} V_{k}\right)-\vec{e}_{k} \partial_{j} \partial_{j} V_{k} \\
+&=\nabla(\nabla \cdot \vec{V})-\nabla^{2} \vec{V}
+\end{aligned}
+$$
+
+> Note: $ e_m $ “分成” 了 $ e_j $ 和 $ e_k $ 可能有点反直觉，但其实是因为求和的循环“少了一层”。
+> $$
+> \Delta =\nabla^2 = \sum_i \frac{\partial^2}{\partial x_i^2} = \partial_i \partial_i
+> $$
 
