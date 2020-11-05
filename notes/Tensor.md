@@ -15,7 +15,7 @@
 >    8. https://zhuanlan.zhihu.com/p/65002019
 > 4. [对偶空间 - 维基百科](https://zh.wikipedia.org/wiki/%E5%AF%B9%E5%81%B6%E7%A9%BA%E9%97%B4)
 > 5. [Covariance and contravariance of vectors - Wikipedia](https://en.wikipedia.org/wiki/Covariance_and_contravariance_of_vectors)
-> 6. 
+> 6. [怎么形象地理解对偶空间（Dual Vector Space）？ - 青春的回答 - 知乎](https://www.zhihu.com/question/38464481/answer/1136002204)
 
 > TODO: **统一一下下面的符号规范**
 
@@ -228,7 +228,18 @@ $$
 $$
 \hat e_i = e_j R_i^j
 $$
-其中 $ \hat e_i $ 去
+其中 $ \hat e_i $ 是新的基矢，$ R^j_i $ 可以看作 $ \hat e^i $ 在旧的基上的坐标，所以表示坐标的指标 $ j $ 在上面。
+
+首先我们尝试推导矢量 $ \alpha $ 在旧的基的坐标 $ \alpha^i $ 和新的基下的坐标 $ \tilde \alpha^i $ 之间的关系：
+$$
+\begin{array}{cl}
+\quad & \alpha = \alpha^i e_i = \tilde \alpha^i \hat e_i = \tilde \alpha^i e_j R^j_i \\
+\Rightarrow & \alpha^j e_j = R^j_i \tilde \alpha^i e_j \\
+\Rightarrow & \alpha^j = R^j_i \tilde \alpha^i \\
+\Rightarrow & ？
+\end{array}
+$$
+
 
 ### 对偶空间
 
