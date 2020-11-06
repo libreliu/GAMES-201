@@ -235,11 +235,53 @@ $$
 \begin{array}{cl}
 \quad & \alpha = \alpha^i e_i = \tilde \alpha^i \hat e_i = \tilde \alpha^i e_j R^j_i \\
 \Rightarrow & \alpha^j e_j = R^j_i \tilde \alpha^i e_j \\
-\Rightarrow & \alpha^j = R^j_i \tilde \alpha^i \\
-\Rightarrow & ？
+\Rightarrow & \alpha^j = R^j_i \tilde \alpha^i\\
+\Rightarrow & [\alpha^1, ...,\alpha^n]^\top = 
+\begin{bmatrix}
+R_1^1 & ... & R_n^1 \\
+\vdots &    & \vdots \\
+R_1^n & ... & R^n_n
+\end{bmatrix}
+[\tilde \alpha^1, ...,\tilde \alpha^n]^\top \\
+\Rightarrow & \begin{bmatrix}
+R_1^1 & ... & R_n^1 \\
+\vdots &    & \vdots \\
+R_1^n & ... & R^n_n
+\end{bmatrix} ^ {-1}[\alpha^1, ...,\alpha^n]^\top = 
+
+[\tilde \alpha^1, ...,\tilde \alpha^n]^\top \\
+
+\Rightarrow & (R^{-1})_j^i \alpha^j = \tilde \alpha^i
+
 \end{array}
 $$
 
+> 在求逆的时候算出来并不是 $ \alpha^j (R^{-1}) ^j_i = \tilde \alpha^i $，指标在左右同乘逆的时候互换了。
+>
+> **在列矢量表示方法下面，和向量乘的指标用在行内（就是列数的意思）**，记住这个应该可以快速反应（或者记坐标的上指标应该和矩阵的下指标乘..？）
+>
+> 写出逆矩阵：
+> $$
+> \begin{array}{cl}
+>  & \alpha^j = R^j_i \tilde \alpha^i \\
+>  \Rightarrow & R^{-1} \alpha^k = (R^{-1})^k_j R^j_i \tilde \alpha^i \\
+>  \Rightarrow & (R^{-1})_m^k \alpha^m = (R^{-1})^k_j R^j_i \tilde \alpha^i \\
+> \end{array}
+> $$
+
+可以看到这里有逆，所以是逆变的。
+
+对于一个一般的线性变换 T，设 $ v $ 是某向量在基下的坐标，这样 $ (Tv) $ 就表示其基下变换后的向量。具体地说，$ (Tv)^i $ 是变换后向量的坐标，其满足 $ (Tv)^i = T_j^i v^j $。
+
+考虑到基变换后线性变换的矩阵 $ \hat T = R^{-1} T R $（即 $\hat{T}_{j^{\prime}}^{i^{\prime}}=\left(R^{-1}\right)_{i}^{i^{\prime}} T_{j}^{i} R_{j^{\prime}}^{j}$），其中 $ R $ 为基变换矩阵，则
+$$
+(\widehat{T v})^{i^{\prime}}=\hat{T}_{j^{\prime}}^{i^{\prime}} \hat{v}^{j^{\prime}}=\left[\left(R^{-1}\right)_{i}^{i^{\prime}} T_{j}^{i} R_{j^{\prime}}^{j}\right]\left[\left(R^{-1}\right)_{j}^{j^{\prime}} v^{j}\right]=\left(R^{-1}\right)_{i}^{i^{\prime}}(T v)^{i}
+$$
+一般的，对于 $ p + q $ 阶，拥有 $ p $ 个逆变分量和 $ q $ 个协变分量的张量 $ T $ 来说有
+$$
+\hat{T}_{j_{1}^{\prime}, \ldots, j_{4}^{\prime}}^{i_{1}, \ldots, i_{p}^{\prime}}=\left(R^{-1}\right)_{i_{1}}^{i_{1}^{\prime}} \cdots\left(R^{-1}\right)_{i_{p}}^{i_{p}^{\prime}} T_{j_{1}, \ldots, j_{q}}^{i_{1}, \ldots, i_{p}} R_{j_{1}^{\prime}}^{j_{1}} \cdots R_{j_{q}^{\prime}}^{j_{q}}
+$$
+成立。
 
 ### 对偶空间
 
