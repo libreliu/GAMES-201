@@ -58,7 +58,7 @@ Push forward 表示 $ G \to g $，pull back 表示 $ g \to G $。
 **大写字母（如 $ V, A $）表示在材料空间的值，而小写字母代表在世界空间的值**，如下所示：
 $$
 V(X,t) =\frac{\partial \phi }{\partial t}(X,t) \\
-V(X,t) =\frac{\partial V }{\partial t}(X,t)
+A(X,t) =\frac{\partial V }{\partial t}(X,t)
 $$
 如果，在 $ (X, t) $ 的邻域有逆映射
 $$
@@ -72,9 +72,14 @@ $$
 这样的记法有什么好处呢？如果只使用 $ x= \Phi(X, t) $ 的话，我们有
 $$
 v_i(t) = \frac{\partial x_i}{\partial t} = \frac{\partial \Phi_i}{\partial X_j} \frac{\partial X_j}{\partial t} + \frac{\partial \Phi_i}{\partial t} \\
-a_i(t) = TODO
+a_i(t) = \frac{\partial v_i}{\partial t} = \frac{\partial ^2\Phi_i}{\partial X_j \partial t} \frac{\partial X_j}{\partial t} + \frac{\partial \Phi_i}{\partial X_j} \frac{\partial^2 X_j}{\partial t^2} + \frac{\partial ^2 \Phi_i}{\partial t^2} \\
 $$
 $ a_i(t) $ 的式子会显得比较复杂。但是如果使用 $ A(X, t) $ 进行 Push forward 的话，就可以得到
 $$
-a(x, t) = A(\Phi^{-1}(x, t), t) = \frac{\partial V_i(\Phi^{-1}(x, t) ,t)}{\partial t} = TODO
+\begin{eqnarray}
+a(x, t) &=& A(\Phi^{-1}(x, t), t) = \frac{\partial V_i(\Phi^{-1}(x, t) ,t)}{\partial t} \\
+&=& a(\Phi(\Phi^{-1}(x, t),t),t) = TODO
+\end{eqnarray}
 $$
+
+> 事实上，TODO
